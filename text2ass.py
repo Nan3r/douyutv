@@ -6,9 +6,9 @@
 #Dialogue: 0,0:00:17.43,0:00:25.43,R2L,,20,20,2,,{\move(635.5,25,-75.5,25)\c&H9966FF}小帅哥LJ出场
 #Dialogue: 0,0:00:26.62,0:00:34.62,R2L,,20,20,2,,{\move(589,25,-29,25)}susu
 
-#每8秒一个弹幕，只是起始时间不一样
+#22秒一个弹幕，只是起始时间不一样
 
-import re,datetime,conf
+import re,datetime
 
 #return "2019-02-23 01:02:43"
 def getHourMinute(text):
@@ -28,6 +28,7 @@ def getMsg(text):
 		return False
 
 '''
+将text转换为ASS文件，可以添加t0,t的数字尽量让弹幕不重合
 \move(<x1>,<y1>,<x2>,<y2>[,<t1>,<t2>])
 提供字幕的移动效果。<x1>,<y1> 是开始点坐标，<x2>,<y2> 是结束点坐标。
 <t1> 和 <t2> 是相对于字幕显示时间的开始运动与结束运动的毫秒时间。
@@ -44,7 +45,7 @@ def danmuMsg(text):
 	#,R2L,,20,20,2,,{\move(589,25,-29,25)}susu
 	import random
 	t0 = [580, 680, 889, 630, 950, 830, 730, 780]
-	t = [25, 135, 85, 230, 280, 330, 380, 180]
+	t = [25, 50, 115.5, 135, 165, 85, 230, 280, 330, 380, 180, 350]
 	a = random.SystemRandom().choice(t0)
 	a1 = random.SystemRandom().choice(t)
 	b = 200 - a 
@@ -67,7 +68,7 @@ def getVideoDanmu(text, startTime, endTime):
 	fstartTime = '-'.join(st[1:4])+' '+':'.join(st[4:])+':00'
 	fendTime = '-'.join(et[1:4])+' '+':'.join(et[4:])+':00'
 	if msg and danmuTime:
-		ndanmuTime = datetime.datetime.strptime(danmuTime,"%Y-%m-%d %H:%M:%S")
+		ndanmuTime = datetime.datetime.strptime(danmuTime,"%Y-%m-%d %H:%M:%S") - datetime.timedelta(seconds=40)
 		nstartTime = datetime.datetime.strptime(fstartTime,"%Y-%m-%d %H:%M:%S")
 		nendTime = datetime.datetime.strptime(fendTime,"%Y-%m-%d %H:%M:%S")
 		if (ndanmuTime < nendTime) and (ndanmuTime > nstartTime):
@@ -128,7 +129,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 	"""
 	import os
 	DIR = "./"
-	danmuFile = str(conf.room_num)+'.txt'
+	danmuFile = '3022003.txt'
 	def compare(x, y):
 		stat_x = os.stat(DIR + "/" + x)
 		stat_y = os.stat(DIR + "/" + y)
