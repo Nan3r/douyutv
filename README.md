@@ -80,7 +80,7 @@ douyutv_plug_path='/Library/Python/2.7/site-packages/streamlink/plugins/douyutv.
 
 修改了获取弹幕的文件，添加了将弹幕转化为ASS的文件，方便在本地观看带弹幕的效果，弹幕太多可能会重合。
 
-当你从百度云或者本地还有视频文件时，使用`python text2ass.py`会读取弹幕文件，然后转为对应的MP4视频的ASS文件。
+使用`python text2ass.py`会读取配置房间号的弹幕文件，然后转为对应的本地的MP4视频的ASS文件。
 
 
 
