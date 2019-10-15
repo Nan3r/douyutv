@@ -59,7 +59,7 @@ douyutv_plug_path='/Library/Python/2.7/site-packages/streamlink/plugins/douyutv.
 
 ### 弹幕抓取
 
-`$ nohup python3 danmu.py >/dev/null 2>&1 &`
+`$ nohup python3 douyu.py >/dev/null 2>&1 &`
 
 ### 下载斗鱼视频
 
